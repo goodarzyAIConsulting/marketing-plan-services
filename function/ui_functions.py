@@ -18,7 +18,7 @@ def generate_marketing_plan(
     goals,
     model_name,
     prompt_path=None,
-    save_path=None
+    save_path=None,
     progress=gr.Progress(track_tqdm=True),
 ):
     if isinstance(duration, float):
@@ -50,6 +50,8 @@ def generate_marketing_plan(
         file_name="marketer_plan",
     )
 
-    prompt_template, marketing_plan_json = generate_marketing_plan_each_day(model_name, prompt_path, save_path)
+    prompt_template, marketing_plan_json = generate_marketing_plan_each_day(
+        model_name, prompt_path, save_path
+    )
 
     return prompt_template, marketing_plan_json
