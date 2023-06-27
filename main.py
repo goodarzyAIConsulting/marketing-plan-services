@@ -14,8 +14,8 @@ def parse_args():
     return parser.parse_args()
 
 
-def run(path_manager: PathManager):
-    initialize(opts["api_key"])
+def run(api_key: str):
+    initialize(api_key)
 
     marketin_plan_main_page = generate_overall_plan_ui()
 
@@ -23,9 +23,8 @@ def run(path_manager: PathManager):
 
 
 def main(opts: Dict[str, Any]):
-    path_manager = PathManager(opts["prompt_path"], opts["save_path"])
-
-    tabbed_interface = run(path_manager)
+    api_key = opts["api_key"]
+    tabbed_interface = run(api_key)
 
     return tabbed_interface
 
