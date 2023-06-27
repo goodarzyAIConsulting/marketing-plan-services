@@ -214,6 +214,7 @@ def generate_marketing_plan_each_day(model_name, prompt_path=None, save_path=Non
                 "marketer_plan", f"{place_holders['social_media_platforms']}"
             ),
             file_name=f"{place_holders['week_number']}_marketer_plan",
+            save_path=save_path,
         )
 
     return prompt_template, json_output
