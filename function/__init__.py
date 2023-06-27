@@ -1,2 +1,2 @@
-from ui_functions import *
-from utils import *
+from .ui_functions import *
+from .utils import *
