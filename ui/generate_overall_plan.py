@@ -18,9 +18,7 @@ def generate_overall_plan_ui(prompt_path: str = None, save_path: str = None):
         gr.Textbox(label="Goals", value="increase follower, gain customer"),  # Goals
         gr.Radio(
             choices=["text-davinci-003", "gpt-3.5-turbo"], label="Model Name"
-        ),  # Select the
-        prompt_path,
-        save_path,
+        ),  # Select the model
     ]
 
     outputs = [gr.Textbox(label="Template Prompt"), gr.JSON(label="JSON Output")]

@@ -8,6 +8,7 @@ from .utils import (
     generate_completion,
     generate_prompt,
     generate_marketing_plan_each_day,
+    PathManager,
 )
 
 
@@ -17,15 +18,15 @@ def generate_marketing_plan(
     duration,
     goals,
     model_name,
-    prompt_path=None,
-    save_path=None,
     progress=gr.Progress(track_tqdm=True),
 ):
     if isinstance(duration, float):
         duration = int(duration)
 
+    path_manager = PathManager()
+
     prompt_template = read_files(
-        os.path.join(prompt_path, "content_generation_prompt.txt")
+        os.path.join(path_manager.prompt_path, "content_generation_prompt.txt")
     )
 
     place_holder_value = {
@@ -51,7 +52,7 @@ def generate_marketing_plan(
     )
 
     prompt_template, marketing_plan_json = generate_marketing_plan_each_day(
-        model_name, prompt_path, save_path
+        model_name, path_manager.prompt_path, path_manager.save_path
     )
 
     return prompt_template, marketing_plan_json

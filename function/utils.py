@@ -8,9 +8,14 @@ from tqdm import tqdm
 
 
 class PathManager(object):
-    def __init__(self, prompt_path, save_path) -> None:
-        self.__prompt_path = prompt_path
-        self.__save_path = save_path
+    def __init__(self) -> None:
+        config_path = "configs/path.json"
+
+        with open(config_path, "r") as fin:
+            paths = json.loads(fin)
+
+        self.__prompt_path = paths["prompt_path"]
+        self.__save_path = paths["save_path"]
 
     @property
     def prompt_path(self):
@@ -27,6 +32,10 @@ class PathManager(object):
     @save_path.setter
     def save_path(self, save_path):
         self.__save_path = save_path
+
+
+def initialize(api_key_input):
+    openai.api_key = api_key_input
 
 
 def generate_prompt(prompt_template: str, **kwargs) -> str:

@@ -1,26 +1,23 @@
 import argparse
 from typing import Dict, Any
+import openai
 
-from function.utils import PathManager
+from function.utils import PathManager, initialize
 from ui.generate_overall_plan import generate_overall_plan_ui
 
 
 def parse_args():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--prompt_path", type=str, default="test_project")
-    parser.add_argument("--save_path", type=str, default="test_project")
+    parser.add_argument("--api_key", type=str, default="test_project")
 
     return parser.parse_args()
 
 
 def run(path_manager: PathManager):
-    print(f"{path_manager.prompt_path = }")
-    print(f"{path_manager.save_path = }")
+    initialize(opts["api_key"])
 
-    marketin_plan_main_page = generate_overall_plan_ui(
-        path_manager.prompt_path, path_manager.save_path
-    )
+    marketin_plan_main_page = generate_overall_plan_ui()
 
     return marketin_plan_main_page
 
