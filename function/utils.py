@@ -12,7 +12,7 @@ class PathManager(object):
         config_path = "configs/path.json"
 
         with open(config_path, "r") as fin:
-            paths = json.loads(fin)
+            paths = json.load(fin)
 
         self.__prompt_path = paths["prompt_path"]
         self.__save_path = paths["save_path"]
