@@ -33,4 +33,4 @@ if __name__ == "__main__":
     opts = vars(parse_args())
     interface = main(opts)
 
-    interface.queue().launch(debug=True)
+    interface.queue().launch(debug=True, share=True)
