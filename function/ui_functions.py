@@ -49,6 +49,7 @@ def generate_marketing_plan(
         json_object=marketing_plan_json,
         folder_name="marketer_plan",
         file_name="marketer_plan",
+        save_path=path_manager.save_path,
     )
 
     prompt_template, marketing_plan_json = generate_marketing_plan_each_day(
