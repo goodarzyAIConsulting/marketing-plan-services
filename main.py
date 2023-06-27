@@ -1,4 +1,4 @@
-from argparse import argparse
+import argparse
 from typing import Dict, Any
 
 from function.utils import PathManager
