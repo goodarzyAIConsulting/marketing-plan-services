@@ -1,3 +1,8 @@
+import sys
+
+sys.path.insert(0, "/content/stable-diffusion-pytorch")
+print(f"{sys.path = }")
+
 from stable_diffusion_pytorch import model_loader
 from stable_diffusion_pytorch import pipeline
 
