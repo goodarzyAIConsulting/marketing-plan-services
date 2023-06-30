@@ -206,6 +206,7 @@ def generate_marketing_plan_each_day(model_name, prompt_path=None, save_path=Non
         try:
             json_obj = json.loads(json_output)
         except Exception:
+            print(f"{Exception}")
             pprint(json_output)
 
         save_output(
