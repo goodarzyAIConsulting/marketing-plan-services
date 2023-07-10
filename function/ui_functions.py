@@ -2,6 +2,7 @@ import os
 import json
 import gradio as gr
 import pandas as pd
+from pprint import pprint  # should be deleteds
 
 from function.utils import (
     save_output,
@@ -58,6 +59,8 @@ def generate_marketing_plan(
     prompt_template, marketing_plan_json = generate_marketing_plan_each_day(
         model_name, path_manager.prompt_path, path_manager.save_path
     )
+
+    pprint(marketing_plan_json)
 
     df = pd.DataFrame(marketing_plan_json["week_days"]).T
     df.reset_index(drop=False, inplace=True)
