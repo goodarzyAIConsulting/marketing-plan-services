@@ -19,11 +19,6 @@ def generate_content_ui():
         )
 
         whole_week_program = gr.Dataframe(row_count=7, col_count=4)
-        number_of_week.change(
-            fn=display_weekly_marketing_plan,
-            inputs=[social_media, number_of_week],
-            outputs=whole_week_program,
-        )
 
         # Define the list of days of the week
         days_of_week = [
@@ -63,6 +58,12 @@ def generate_content_ui():
         caption = gr.Textbox(label="caption")
         hashtag = gr.Textbox(label="hashtag")
         # content_meta = gr.JSON(label="Content Meta")
+
+        number_of_week.change(
+            fn=display_weekly_marketing_plan,
+            inputs=[social_media, number_of_week],
+            outputs=whole_week_program,
+        )
 
         day_dropdown.change(
             fn=change_day_content_description_json,
