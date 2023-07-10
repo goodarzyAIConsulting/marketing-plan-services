@@ -60,6 +60,9 @@ def generate_marketing_plan(
         model_name, path_manager.prompt_path, path_manager.save_path
     )
 
+    if isinstance(social_media_platforms, list):
+        social_media_platforms = social_media_platforms[0]
+
     marketing_weekly_plan_json = read_files(
         os.path.join(
             path_manager.save_path,
