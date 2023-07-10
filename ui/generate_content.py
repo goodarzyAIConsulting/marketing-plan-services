@@ -34,7 +34,7 @@ def generate_content_ui():
         # Create a dropdown component for the days of the week
         day_dropdown = gr.Dropdown(choices=days_of_week, label="Select a day")
 
-        day_content_description = gr.JSON(label="JSON Output")
+        day_content_description = gr.JSON(label="JSON Output", visible=False)
 
         business_description = gr.Textbox(
             label="Business Description"
