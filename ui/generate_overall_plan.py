@@ -1,34 +1,46 @@
 import gradio as gr
 
 from function import generate_marketing_plan
+from function.ui_functions import display_weekly_marketing_plan
 
 
 def generate_overall_plan_ui(prompt_path: str = None, save_path: str = None):
-    inputs = [
-        gr.Textbox(
+    with gr.Blocks() as first_page:
+        business_description = gr.Textbox(
             label="Business Description", value="I am a tattoo artist"
-        ),  # Business description
-        gr.CheckboxGroup(
+        )
+
+        social_media = gr.CheckboxGroup(
             choices=["Facebook", "Twitter", "Instagram", "LinkedIn"],
             label="Social Media Platforms",
-        ),  # Social Media selection
-        gr.Number(
+        )
+
+        week_duration = gr.Number(
             label="Duration (in weeks)",
-        ),  # Number of weeks
-        gr.Textbox(label="Goals", value="increase follower, gain customer"),  # Goals
-        gr.Radio(
+        )
+
+        goals = gr.Textbox(label="Goals", value="increase follower, gain customer")
+
+        model = gr.Radio(
             choices=["text-davinci-003", "gpt-3.5-turbo"], label="Model Name"
-        ),  # Select the model
-    ]
+        )
 
-    outputs = [gr.Textbox(label="Template Prompt"), gr.JSON(label="JSON Output")]
+        plan_generator_btn = gr.Button("Plan Generator")
 
-    return gr.Interface(
-        fn=generate_marketing_plan,
-        # inputs=[api_key_input, model_name_input, business_description_input, social_media_platforms_input, duration_input, goals_input],
-        inputs=inputs,
-        outputs=outputs,
-        title="Marketing Plan Generator",
-        description="Generate a marketing plan based on your input.",
-        theme="default",
-    )
+        number_of_week = gr.Number(label="Number of Week", value=1)
+
+        whole_week_program = gr.Dataframe(row_count=7, col_count=4)
+
+        plan_generator_btn.click(
+            generate_marketing_plan,
+            inputs=[business_description, social_media, week_duration, goals, model],
+            outputs=[whole_week_program],
+        )
+
+        number_of_week.change(
+            fn=display_weekly_marketing_plan,
+            inputs=[social_media, number_of_week],
+            outputs=whole_week_program,
+        )
+
+    return first_page

@@ -3,7 +3,7 @@ from typing import Dict, Any
 import openai
 import gradio as gr
 
-from function.utils import PathManager, initialize
+from function.utils import initialize
 from ui.generate_overall_plan import generate_overall_plan_ui
 from ui.generate_content import generate_content_ui
 
