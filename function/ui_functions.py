@@ -142,6 +142,8 @@ def change_day_content_description_json(social_media, day_dropdown, number_of_we
 
 
 def display_weekly_marketing_plan(social_media, number_of_week):
+    if isinstance(number_of_week, float):
+        number_of_week = int(number_of_week)
     path_manager = PathManager()
 
     marketing_weekly_plan_json = read_files(

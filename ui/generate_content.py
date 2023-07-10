@@ -64,7 +64,7 @@ def generate_content_ui():
         hashtag = gr.Textbox(label="hashtag")
         # content_meta = gr.JSON(label="Content Meta")
 
-        social_media.change(
+        day_dropdown.change(
             fn=change_day_content_description_json,
             inputs=[social_media, day_dropdown, number_of_week],
             outputs=[business_description, goals, day_content_description],
