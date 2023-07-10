@@ -59,7 +59,11 @@ def generate_marketing_plan(
         model_name, path_manager.prompt_path, path_manager.save_path
     )
 
-    return prompt_template, marketing_plan_json
+    df = pd.DataFrame(marketing_plan_json["week_days"]).T
+    df.reset_index(drop=False, inplace=True)
+    df.rename(columns={"index": "week_days"}, inplace=True)
+
+    return df
 
 
 def generate_content(
