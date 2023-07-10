@@ -1,6 +1,7 @@
 import os
 import json
 import gradio as gr
+import pandas as pd
 
 from function.utils import (
     save_output,
@@ -138,3 +139,22 @@ def change_day_content_description_json(social_media, day_dropdown, number_of_we
             label="JSON Output", value=marketing_plan_json["week_days"][day_dropdown]
         ),
     )
+
+
+def display_weekly_marketing_plan(social_media, number_of_week):
+    path_manager = PathManager()
+
+    marketing_weekly_plan_json = read_files(
+        os.path.join(
+            path_manager.save_path,
+            "marketer_plan",
+            f"{social_media}",
+            f"week_{number_of_week}_marketer_plan.json",
+        )
+    )
+
+    df = pd.DataFrame(marketing_weekly_plan_json["week_days"]).T
+    df.reset_index(drop=False, inplace=True)
+    df.rename(columns={"index": "week_days"}, inplace=True)
+
+    return gr.DataFrame.update(value=df)

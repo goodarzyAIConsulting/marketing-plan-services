@@ -1,12 +1,28 @@
 import gradio as gr
 
-from function.ui_functions import change_day_content_description_json, generate_content
+from function.ui_functions import (
+    change_day_content_description_json,
+    generate_content,
+    display_weekly_marketing_plan,
+)
 
 
 def generate_content_ui():
     with gr.Blocks() as third_page:
+        social_media = gr.Radio(
+            choices=["Facebook", "Twitter", "Instagram", "LinkedIn"],
+            label="social media",
+        )
+
         number_of_week = gr.Number(
             label="Duration (in weeks)",
+        )
+
+        whole_week_program = gr.Dataframe(row_count=7, col_count=4)
+        number_of_week.change(
+            fn=display_weekly_marketing_plan,
+            inputs=[social_media, number_of_week],
+            outputs=whole_week_program,
         )
 
         # Define the list of days of the week
@@ -22,11 +38,6 @@ def generate_content_ui():
 
         # Create a dropdown component for the days of the week
         day_dropdown = gr.Dropdown(choices=days_of_week, label="Select a day")
-
-        social_media = gr.Radio(
-            choices=["Facebook", "Twitter", "Instagram", "LinkedIn"],
-            label="social media",
-        )
 
         day_content_description = gr.JSON(label="JSON Output")
 
