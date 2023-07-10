@@ -31,15 +31,20 @@ def generate_overall_plan_ui(prompt_path: str = None, save_path: str = None):
 
         whole_week_program = gr.Dataframe(row_count=7, col_count=4)
 
+        social_media_radio = gr.Radio(
+            choices=["Facebook", "Twitter", "Instagram", "LinkedIn"],
+            label="social media",
+        )
+
         plan_generator_btn.click(
             generate_marketing_plan,
             inputs=[business_description, social_media, week_duration, goals, model],
             outputs=[whole_week_program],
         )
 
-        number_of_week.change(
+        social_media_radio.change(
             fn=display_weekly_marketing_plan,
-            inputs=[social_media, number_of_week],
+            inputs=[social_media_radio, number_of_week],
             outputs=whole_week_program,
         )
 
