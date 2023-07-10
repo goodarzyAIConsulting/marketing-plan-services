@@ -60,9 +60,16 @@ def generate_marketing_plan(
         model_name, path_manager.prompt_path, path_manager.save_path
     )
 
-    pprint(marketing_plan_json)
+    marketing_weekly_plan_json = read_files(
+        os.path.join(
+            path_manager.save_path,
+            "marketer_plan",
+            f"{social_media_platforms}",
+            f"week_1_marketer_plan.json",
+        )
+    )
 
-    df = pd.DataFrame(marketing_plan_json["week_days"]).T
+    df = pd.DataFrame(marketing_weekly_plan_json["week_days"]).T
     df.reset_index(drop=False, inplace=True)
     df.rename(columns={"index": "week_days"}, inplace=True)
 
