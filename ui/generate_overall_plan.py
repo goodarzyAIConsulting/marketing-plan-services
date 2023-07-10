@@ -29,12 +29,12 @@ def generate_overall_plan_ui(prompt_path: str = None, save_path: str = None):
 
         number_of_week = gr.Number(label="Number of Week", value=1)
 
-        whole_week_program = gr.Dataframe(row_count=7, col_count=4)
-
         social_media_radio = gr.Radio(
             choices=["Facebook", "Twitter", "Instagram", "LinkedIn"],
             label="social media",
         )
+
+        whole_week_program = gr.Dataframe(row_count=7, col_count=4)
 
         plan_generator_btn.click(
             generate_marketing_plan,
