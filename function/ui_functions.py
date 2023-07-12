@@ -50,7 +50,6 @@ def generate_marketing_plan(
         json_output = response.choices[0].message.content
     elif model_name == "text-davinci-003":
         json_output = response.choices[0].text.strip()
-        pprint(json_output)
     marketing_plan_json = json.loads(json_output)
 
     save_output(
@@ -117,7 +116,10 @@ def generate_content(
         prompt_template=prompt_template, model_name=model_name
     )
 
-    json_output = response.choices[0].message.content
+    if model_name == "gpt-3.5-turbo":
+        json_output = response.choices[0].message.content
+    elif model_name == "text-davinci-003":
+        json_output = response.choices[0].text.strip()
     marketing_plan_json = json.loads(json_output)
 
     img = generate_image_text_to_image(marketing_plan_json)
