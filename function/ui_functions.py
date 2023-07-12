@@ -46,6 +46,8 @@ def generate_marketing_plan(
         prompt_template=prompt_template, model_name=model_name
     )
 
+    pprint(response)
+
     json_output = response.choices[0].message.content
     marketing_plan_json = json.loads(json_output)
 
