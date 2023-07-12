@@ -201,7 +201,7 @@ def generate_marketing_plan_each_day(model_name, prompt_path=None, save_path=Non
         response = generate_completion(
             prompt_template=modified_prompt, model_name=model_name
         )
-
+        pprint(response)
         json_output = response.choices[0].message.content
         try:
             json_obj = json.loads(json_output)
