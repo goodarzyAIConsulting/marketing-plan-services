@@ -120,6 +120,7 @@ def generate_content(
         json_output = response.choices[0].message.content
     elif model_name == "text-davinci-003":
         json_output = response.choices[0].text.strip()
+        print(json_output)
     marketing_plan_json = json.loads(json_output)
 
     img = generate_image_text_to_image(marketing_plan_json)
