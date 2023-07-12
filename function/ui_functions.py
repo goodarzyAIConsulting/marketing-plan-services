@@ -46,12 +46,11 @@ def generate_marketing_plan(
         prompt_template=prompt_template, model_name=model_name
     )
 
-    pprint(response)
-
     if model_name == "gpt-3.5-turbo":
         json_output = response.choices[0].message.content
     elif model_name == "text-davinci-003":
         json_output = response.choices[0].text.strip()
+        pprint(json_output)
     marketing_plan_json = json.loads(json_output)
 
     save_output(
