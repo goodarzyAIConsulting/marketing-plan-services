@@ -134,7 +134,7 @@ def generate_completion(prompt_template, model_name):
             "kwargs": {
                 "engine": model_name,
                 "prompt": prompt_template,
-                "max_tokens": 300,
+                "max_tokens": 1000,
                 "temperature": 0,
                 # "top_p": 1,
                 # "frequency_penalty": 0,
