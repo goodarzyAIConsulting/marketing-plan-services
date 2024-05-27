@@ -65,11 +65,8 @@ This project is a web-based application designed to help businesses generate mar
 
 ## Project Structure
 
-- `app.py`: Main application script.
+- `main.py`: Main application script.
 - `requirements.txt`: List of dependencies.
-- `.env`: Environment variables for API keys.
-- `templates/`: Directory containing template files for Gradio.
-- `static/`: Directory containing static files like CSS and JavaScript.
 
 ## Contributing
 
